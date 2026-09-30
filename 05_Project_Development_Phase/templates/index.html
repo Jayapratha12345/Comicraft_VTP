@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ComicCraft</title>
+<style>
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+         font-family:Arial,sans-serif; background:linear-gradient(135deg,#5fa8a0,#a8c8d8,#e8b998); }
+  .card { background:#fff; width:min(420px,92vw); padding:24px; border-radius:12px;
+          box-shadow:0 8px 24px rgba(0,0,0,.25); }
+  h2 { text-align:center; margin-top:0; }
+  label { display:block; font-weight:bold; font-size:13px; margin:12px 0 4px; }
+  input, textarea, select { width:100%; padding:8px; border:1px solid #bbb; border-radius:6px;
+                            box-sizing:border-box; font-size:14px; }
+  button { width:100%; margin-top:18px; padding:10px; background:#0066cc; color:#fff; border:0;
+           border-radius:6px; font-size:15px; cursor:pointer; }
+  button:hover { background:#004c99; }
+  button:disabled { background:#7a9cc0; cursor:wait; }
+  .error { background:#fde8e8; color:#a00; padding:10px; border-radius:6px; font-size:13px;
+           white-space:pre-wrap; margin-bottom:8px; }
+  #wait { display:none; text-align:center; font-size:13px; color:#555; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>✏️ Create Your Comic</h2>
+  {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  <form method="post" action="/generate" onsubmit="startWait()">
+    <label for="prompt">Story Prompt:</label>
+    <textarea id="prompt" name="prompt" rows="3" required>A brave fox explores an enchanted forest.</textarea>
+
+    <label for="character_name">Main Character Name:</label>
+    <input id="character_name" name="character_name" value="Free" required>
+
+    <label for="setting">Setting:</label>
+    <select id="setting" name="setting">
+      <option>forest</option><option>school</option><option>space</option><option>city</option>
+    </select>
+
+    <label for="tone">Story Tone:</label>
+    <select id="tone" name="tone">
+      <option>dramatic</option><option>light-hearted</option><option>poetic</option><option>funny</option>
+    </select>
+
+    <label for="style">Art Style:</label>
+    <select id="style" name="style">
+      <option>comic book</option><option>anime</option><option>pixel art</option><option>realistic</option>
+    </select>
+
+    <button id="btn" type="submit">Generate Comic</button>
+    <div id="wait">Generating… this can take a few minutes (5 images). Please don't close the page.</div>
+  </form>
+</div>
+<script>
+  function startWait() {
+    document.getElementById('btn').disabled = true;
+    document.getElementById('wait').style.display = 'block';
+  }
+</script>
+</body>
+</html>
