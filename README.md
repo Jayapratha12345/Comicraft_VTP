@@ -32,7 +32,13 @@ uvicorn app.main:app --reload
 ```
 Open <http://127.0.0.1:8000> (API docs at `/docs`).
 
-## 👥 Team
-- [Your Name] – [Roll no. / Role]
+## 👥 Team:
+Team ID : SWTID-2026-2977
+Team Size : 4
+Team Leader : Veera M
+Team member : Jayalakshmi R
+Team member : Jayapratha Gopi
+Team member : Poonkodi K
+
 
 > Built as part of the SmartBridge / SmartInternz program.
